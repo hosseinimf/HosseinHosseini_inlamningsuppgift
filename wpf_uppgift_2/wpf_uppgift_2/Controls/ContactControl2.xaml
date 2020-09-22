@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="wpf_uppgift_2.Controls.ContactControl2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:wpf_uppgift_2.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="400">
+    <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Left">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="contactImage" Grid.Column="0" Height="80" Width="80"/>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock x:Name="contactName"  FontSize="22"/>
+                <TextBlock x:Name="contactRole" />
+            </StackPanel>
+        </Grid>
+        
+    </Button>
+    
+    
+    
+    
+    
+</UserControl>

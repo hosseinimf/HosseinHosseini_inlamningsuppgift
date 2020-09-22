@@ -1,0 +1,23 @@
+﻿<UserControl xmlns:Controls="clr-namespace:wpf_uppgift_2.Controls"  x:Class="wpf_uppgift_2.Views.ContactViewModel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:wpf_uppgift_2.Views"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="400">
+    <Grid Background="#FFCEDCF9">
+        <StackPanel>
+            <Label Content="Contacts" Height="100" Width="400" Padding="30 0 0 0"
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="25" Margin="0 0 0 20" />
+            <Controls:ContactControl2 ContactName="Hossein Hosseini" ContactRole="Teacher" ContactImage="/Views/GetPersonaPhoto.jpg"  />
+            <Controls:ContactControl2 ContactName="Amirali Hosseini" ContactRole="Student" ContactImage="/Views/hh 3x3.jpg"   />
+            <Controls:ContactControl2 ContactName="Farzaneh Ahmadi" ContactRole="Student" />
+            <Controls:ContactControl2 ContactName="Peter Andersson" ContactRole="Student" />
+            <Controls:ContactControl2 ContactName="Eric Pettersson" ContactRole="Student"  />
+            <Controls:ContactControl2 ContactName="Lena Eriksson" ContactRole="Student"  />
+        </StackPanel>
+            
+    </Grid>
+</UserControl>

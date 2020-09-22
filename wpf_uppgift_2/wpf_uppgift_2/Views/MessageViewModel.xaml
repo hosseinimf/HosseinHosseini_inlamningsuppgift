@@ -1,0 +1,53 @@
+﻿<UserControl xmlns:Controls="clr-namespace:wpf_uppgift_2.Controls"  x:Class="wpf_uppgift_2.Views.MessageViewModel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:wpf_uppgift_2.Views"
+             xmlns:Models="clr-namespace:wpf_uppgift_2.Models"
+             xmlns:Views="clr-namespace:wpf_uppgift_2.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="950">
+
+    <Grid Background="#FFD9F1F9" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="Messages" Height="100" FontSize="27" Padding="30 0 0 0" Margin="0 0 0 30"
+                   HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="#FFD9F1F9" Foreground="Black" />
+            <Controls:ContactControl3 ContactName3="Hossein Hosseini" Description="Office"
+                                     MessageTime="13:52" MessageDate="2020-08-10" x:Name="btnmessage1" MouseEnter="btnmessage1_MouseEnter"/>
+            <Controls:ContactControl3 ContactName3="Amirali Hosseini" Description="School"
+                                     MessageTime="14:05" MessageDate="2020-08-15" x:Name="btnMessage2" MouseEnter="btnMessage2_MouseEnter"/>
+            <Controls:ContactControl3 ContactName3="Farzaneh Ahmadi " Description="Home"
+                                     MessageTime="08:45" MessageDate="2020-08-25"/>
+            <Controls:ContactControl3 ContactName3="Peter Andersson " Description="Universitet"
+                                     MessageTime="13:45" MessageDate="2020-09-01"/>
+            <Controls:ContactControl3 ContactName3="Reza Moradi " Description="Universitet"
+                                     MessageTime="12:36" MessageDate="2020-09-06"/>
+            <Controls:ContactControl3 ContactName3="Hassan Mohamadi " Description="Förening"
+                                     MessageTime="11:45" MessageDate="2020-09-11"/>
+            <Controls:ContactControl3 ContactName3="Mikael Josefsson " Description="Universitet"
+                                     MessageTime="10:50" MessageDate="2020-09-01"/>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            
+
+            <StackPanel Grid.Column="1">
+                <TextBlock x:Name="from" Text="" FontSize="20" Margin="50 70 50 5"/>
+                <TextBlock x:Name="to" Text="" FontSize="15" Margin="50 0 0 0"/>
+                <TextBlock x:Name="text" Text="" FontSize="12" Margin="50 60 20 20"/>
+            </StackPanel>
+            
+            
+        </Grid>
+
+        
+
+
+    </Grid>
+</UserControl>

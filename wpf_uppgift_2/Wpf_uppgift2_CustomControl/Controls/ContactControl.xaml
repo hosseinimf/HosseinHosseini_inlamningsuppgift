@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Wpf_uppgift2_CustomControl.Controls.ContactControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf_uppgift2_CustomControl.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="400">
+    <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Left">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="contactImage" Grid.Column="0" Height="75" Width="75"/>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock x:Name="contactName" Text="Amir Hossein Hosseini" FontSize="20" Foreground="#FF062DB3" Margin="5 3"/>
+                <TextBlock x:Name="contactRole" Text="Engineer" FontSize="14" Foreground="#FF6574A8" Margin="5 3"/>
+            </StackPanel>
+        </Grid>
+        
+    </Button>
+</UserControl>
