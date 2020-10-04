@@ -36,9 +36,18 @@ namespace uppgift_4_uwp
             this.InitializeComponent();
         }
 
-        private async void btnSendM_Click(object sender, RoutedEventArgs e)
+        private void btnSendM_Click(object sender, RoutedEventArgs e)
         {
-            Uwp_Services.SendMAsync(deviceClient).GetAwaiter();
+            Uwp_Services.SendMAsync(deviceClient).GetAwaiter();           
+        } 
+
+        private async void MPage_Loading(FrameworkElement sender, object args)
+        {
+            lbReceivedMessage.Items.Add(await Uwp_Services.ReceiveMAsync(deviceClient));
+        }
+
+        private async void GetMessage_Click(object sender, RoutedEventArgs e)
+        {
             lbReceivedMessage.Items.Add(await Uwp_Services.ReceiveMAsync(deviceClient));
         }
     }

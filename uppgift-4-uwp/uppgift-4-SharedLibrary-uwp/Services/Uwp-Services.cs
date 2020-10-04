@@ -14,7 +14,7 @@ namespace uppgift_4_SharedLibrary_uwp.Services
     {
         private static readonly Random rnd = new Random();
 
-        public static async Task SendMAsync(DeviceClient deviceClient) 
+        public static async Task<string> SendMAsync(DeviceClient deviceClient) 
         {           
                 var data = new TemperatureModel
                 {
@@ -26,7 +26,10 @@ namespace uppgift_4_SharedLibrary_uwp.Services
                 var payload = new Message(Encoding.UTF8.GetBytes(json));
 
                 await deviceClient.SendEventAsync(payload);
-                await Task.Delay(2*1000);           
+                await Task.Delay(2*1000);
+
+                string payloadString = payload.ToString();
+                return payloadString;
         } 
 
         public static async Task<string> ReceiveMAsync(DeviceClient deviceClient)

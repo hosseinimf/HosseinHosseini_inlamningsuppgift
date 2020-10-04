@@ -6,15 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MPage" Loading="MPage_Loading">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnSendM" Click="btnSendM_Click" Content="Send temperature data" 
-                Padding="20" Margin="30 60 0 0" VerticalAlignment="Top" Background="#332F7CDC" BorderBrush="#FF78E1F7" />
+        <StackPanel>
+        <Button Grid.Column="0" x:Name="btnSendM" Click="btnSendM_Click" Content="Send temperature data" HorizontalAlignment="Stretch"
+                Padding="20" Margin="30 60 30 0" VerticalAlignment="Top" Background="#332F7CDC" BorderBrush="#FF78E1F7" />
+            
+        <Button Grid.Column="0" x:Name="GetMessage"  Content="Get message" Click="GetMessage_Click" HorizontalAlignment="Stretch"
+                Padding="20" Margin="30 80 30 0" VerticalAlignment="Top" Background="#332F7CDC" BorderBrush="#FF78E1F7" />
+            
+        <TextBlock  Height="30" Margin="30 30 0 0" Text="Tryck på knappen Get message"/>
+            <TextBlock Text="för att få message från iot hub" Margin="30 5 0 0"/>
+        </StackPanel>
 
         <ListBox Grid.Column="1" Margin="70" Padding="20" x:Name="lbReceivedMessage">
         </ListBox>

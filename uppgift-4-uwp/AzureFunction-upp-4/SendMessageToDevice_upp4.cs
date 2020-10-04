@@ -35,6 +35,8 @@ namespace AzureFunction_upp_4
 
             targetdeviceid = targetdeviceid ?? data?.TargetDeviceId;
             message = message ?? data?.Message;
+
+            await Services.SendMessageToDeviceAsync(serviceClient, targetdeviceid, message);
             
             return new OkResult();
         }
