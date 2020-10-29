@@ -1,0 +1,85 @@
+﻿<Page
+    x:Class="DL_Uppgift_1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DL_Uppgift_1"
+    xmlns:models="using:SharedLibrary.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource AppBarItemBackgroundThemeBrush}" BorderBrush="#FF556E8D">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="PersonCollection" Source="{x:Bind viewModel.persons}"/>
+    </Page.Resources>
+
+    <Grid BorderBrush="#FF42527A">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0 30">
+            <StackPanel Margin="20" >
+                <TextBlock Text="First name" Margin="0 0 0 0"/>
+                <TextBlock Text="Last name" Margin="0 12 0 0"/>
+                <TextBlock Text="Age" Margin="0 12 0 0"/>
+                <TextBlock Text="Email" Margin="0 12 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="20" Width="268" >
+                <TextBox x:Name="tbFirstN" FontSize="12" />
+                <TextBox x:Name="tbLastN" FontSize="12"/>
+                <TextBox x:Name="tbAge" FontSize="12"/>
+                <TextBox x:Name="tbEmail" FontSize="12"/>
+                <TextBox x:Name="tbres" Margin="0 40"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Button x:Name="btnCreateTxtFile" Content="Create txt file" HorizontalAlignment="Stretch" Margin="20" Click="btnCreateTxtFile_Click"/>
+            <Button x:Name="btnCreateCsvFile" Content="Create Csv file" HorizontalAlignment="Stretch" Margin="20" Click="btnCreateCsvFile_Click"/>
+            <Button x:Name="btnCreateJsonFile" Content="Create Json file" HorizontalAlignment="Stretch" Margin="20" Click="btnCreateJsonFile_Click"/>
+            <Button x:Name="btnCreateXmlFile" Content="Create xml file" HorizontalAlignment="Stretch" Margin="20" Click="btnCreateXmlFile_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Button Content="button1" HorizontalAlignment="Stretch" Margin="20"/>
+            <Button Content="button1" HorizontalAlignment="Stretch" Margin="20"/>
+            <Button x:Name="btnOpenJsonFile" Content="Open json file" HorizontalAlignment="Stretch" Margin="20" Click="btnOpenJsonFile_Click"/>
+            <Button Content="button1" HorizontalAlignment="Stretch" Margin="20"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button x:Name="btnReadFromTxtFile" Content="Read from txt file" HorizontalAlignment="Stretch" Margin="20" Click="btnReadFromTxtFile_Click"/>
+            <Button x:Name="btnReadFromCsvFile" Content="Read from Csv file" HorizontalAlignment="Stretch" Margin="20" Click="btnReadFromCsvFile_Click"/>
+            <Button x:Name="btnReadFromJsonFile" Content="Read from json file" HorizontalAlignment="Stretch" Margin="20" Click="btnReadFromJsonFile_Click"/>
+            <Button x:Name="btnReadFromXmlFile" Content="Read from xml file" HorizontalAlignment="Stretch" Margin="20" Click="btnReadFromXmlFile_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"> 
+            
+            
+            <ListView x:Name="lvShowItem" ItemsSource="{Binding Source={StaticResource PersonCollection}}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Person">
+
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Bind DisplayName}" FontSize="16"/>
+                            </StackPanel>
+                            <TextBlock Text="{x:Bind Email}" FontSize="12" Foreground="Gray"/>
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackPanel>
+
+    </Grid>
+</Page>
