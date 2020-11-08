@@ -1,0 +1,212 @@
+﻿<Page
+    x:Class="inlamningsuppgift_2.IssuesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:inlamningsuppgift_2"
+    xmlns:models="using:DataAccessLibrary.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Margin="20">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="5*"/>
+            
+        </Grid.ColumnDefinitions>
+
+
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Create Issue" FontSize="20" Margin="60 0 0 40"/>
+
+            <ComboBox x:Name="cmbCustomers" Margin="10 30 0 20" PlaceholderText="Select customer" Padding="10" HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:Customer">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Bind Id}" Margin="0 0 5 0"/>
+                            <TextBlock Text="{x:Bind FirstName}" Margin="0 0 5 0"/>
+                            <TextBlock Text="{x:Bind LastName}" Margin="0 0 5 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+
+            <TextBlock Text="Title" FontSize="15" Margin="10"/>
+            <TextBox x:Name="tbxTitle" Margin="10 0 0 20"/>
+            <TextBlock Text="Description" FontSize="15" Margin="10"/>
+            <TextBox x:Name="tbxDescription" Margin="10 0 0 10" TextWrapping="Wrap" Height="100" PlaceholderText="max 200 character!" FontSize="10"/>
+            <ComboBox x:Name="cmbStatus" PlaceholderText="Select status" Margin="10 20 0 20" HorizontalAlignment="Stretch"/>
+
+
+
+            <Button x:Name="btnCreateIssue" Content="Create Issue" Margin="10 20 0 0" HorizontalAlignment="Stretch" Click="btnCreateIssue_Click"/>
+            <Button x:Name="btnUpdateIssue" Content="Update Selected Issue" HorizontalAlignment="Stretch" Margin="10 20 0 0" Click="btnUpdateIssue_Click"/>
+
+            <TextBlock Text="Comment" Margin="10 50 0 0"/>
+            <TextBox Margin="10 0 0 0" x:Name="tbxComment" Height="100" IsEnabled="False" />
+            <Button Content="Create comment" Margin="10 10 0 0" HorizontalAlignment="Stretch" x:Name="btnCreateComment" Click="btnCreateComment_Click"/>
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1">
+            <ListView x:Name="lstvActiveIssues" Header="Active documents" HorizontalAlignment="Center" Margin="10" Background="#FF1F2436" 
+                      ItemClick="lstvActiveIssues_ItemClick" IsItemClickEnabled="True" Height="400">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Issue">
+                        <StackPanel>
+
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Title:" Margin="10 10 0 0" HorizontalTextAlignment="Right" Width="130" FontSize="10"/>
+                                    <TextBlock Text="{x:Bind Title}" Margin="10 10 0 0" HorizontalTextAlignment="Left" FontSize="10"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="Customer Id:" Margin="10 5 0 0" HorizontalTextAlignment="Right" Width="130" FontSize="10"/>
+                                    <TextBlock Text="{x:Bind Customer.Id}" Margin="10 5 0 0" HorizontalTextAlignment="Left" FontSize="10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Customer Name:" Margin="10 5 0 0" HorizontalTextAlignment="Right" Width="130" FontSize="10"/>
+                                    <TextBlock Text="{x:Bind Customer.FirstName}" Margin="10 5 0 0" HorizontalTextAlignment="Left" FontSize="10"/>
+                                    <TextBlock Text="{x:Bind Customer.LastName}" Margin="5 5 0 0" HorizontalTextAlignment="Left" FontSize="10"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Text="_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"/>
+                            
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel DataContext="{Binding SelectedItem, ElementName=lstvActiveIssues}" Margin="10 0 0 0">
+                <TextBlock Text="Details of the selected Issue" Margin="0 20 0 0" HorizontalAlignment="Center" FontSize="17"/>
+                
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Title:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 10 0 0" FontSize="12" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Title}" Margin="15 10 0 0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Customer Name:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 3 0 0" FontSize="12" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Customer.FirstName}" Margin="15 3 0 0" FontSize="12"/>
+                    <TextBlock Text="{Binding Customer.LastName}" Margin="5 3 0 0" FontSize="12"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Created:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 3 0 0" FontSize="12" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Created}" Margin="15 3 0 0" FontSize="12"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Description:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 3 0 0" FontSize="12" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Description}" Margin="15 3 0 0" FontSize="12" TextWrapping="Wrap" Width="200" Height="70"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Comments:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 3 0 0" FontSize="12" Foreground="Gray"/>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Comments[0].Description}" x:Name="tbActiveComment" Margin="15 3 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[0].Created}" x:Name="tbActiveCommentCreated" Margin="15 0 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[1].Description}" x:Name="tbActiveComment2" Margin="15 5 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[1].Created}" x:Name="tbActiveCommentCreated2" Margin="15 0 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[2].Description}" x:Name="tbActiveComment3" Margin="15 5 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[2].Created}" x:Name="tbActiveCommentCreated3" Margin="15 0 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+
+            </StackPanel>
+            
+        </StackPanel>
+
+
+
+
+
+        <StackPanel Grid.Column="2">
+            <ListView x:Name="lstvClosedIssues" Header="Closed documents" HorizontalAlignment="Center" Margin="10" Background="#FF1F2436" 
+                       IsItemClickEnabled="True" Height="400" ItemClick="lstvClosedIssues_ItemClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Issue">
+                        <StackPanel>
+
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Title:" Margin="10 10 0 0" HorizontalTextAlignment="Right" Width="130" FontSize="10"/>
+                                    <TextBlock Text="{x:Bind Title}" Margin="10 10 0 0" HorizontalTextAlignment="Left" FontSize="10"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="Customer Id:" Margin="10 5 0 0" HorizontalTextAlignment="Right" Width="130" FontSize="10"/>
+                                    <TextBlock Text="{x:Bind Customer.Id}" Margin="10 5 0 0" HorizontalTextAlignment="Left" FontSize="10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Customer Name:" Margin="10 5 0 0" HorizontalTextAlignment="Right" Width="130" FontSize="10"/>
+                                    <TextBlock Text="{x:Bind Customer.FirstName}" Margin="10 5 0 0" HorizontalTextAlignment="Left" FontSize="10"/>
+                                    <TextBlock Text="{x:Bind Customer.LastName}" Margin="5 5 0 0" HorizontalTextAlignment="Left" FontSize="10"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Text="_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _"/>
+
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel DataContext="{Binding SelectedItem, ElementName=lstvClosedIssues}" Margin="10 0 0 0">
+                <TextBlock Text="Details of the selected Issue" Margin="0 20 0 0" HorizontalAlignment="Center" FontSize="17"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Title:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 10 0 0" FontSize="12" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Title}" Margin="15 10 0 0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Customer Name:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 3 0 0" FontSize="12" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Customer.FirstName}" Margin="15 3 0 0" FontSize="12"/>
+                    <TextBlock Text="{Binding Customer.LastName}" Margin="5 3 0 0" FontSize="12"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Created:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 3 0 0" FontSize="12" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Created}" Margin="15 3 0 0" FontSize="12"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Description:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 3 0 0" FontSize="12" Foreground="Gray"/>
+                    <TextBlock Text="{Binding Description}" Margin="15 3 0 0" FontSize="12" TextWrapping="Wrap" Width="200" Height="70"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Comments:" Width="130" HorizontalAlignment="Left" TextAlignment="Right" Margin="0 3 0 0" FontSize="12" Foreground="Gray"/>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Comments[0].Description}" x:Name="tbClosedComment" Margin="15 3 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[0].Created}" x:Name="tbClosedCommentCreated" Margin="15 0 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[1].Description}" x:Name="tbClosedComment2" Margin="15 5 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[1].Created}" x:Name="tbClosedCommentCreated2" Margin="15 0 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[2].Description}" x:Name="tbClosedComment3" Margin="15 5 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                        <TextBlock Text="{Binding Comments[2].Created}" x:Name="tbClosedCommentCreated3" Margin="15 0 0 0" FontSize="12" TextWrapping="Wrap" Width="200"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+</Page>
