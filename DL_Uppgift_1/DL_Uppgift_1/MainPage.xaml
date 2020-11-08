@@ -48,10 +48,9 @@
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="1">
-            <Button Content="button1" HorizontalAlignment="Stretch" Margin="20"/>
-            <Button Content="button1" HorizontalAlignment="Stretch" Margin="20"/>
+            
             <Button x:Name="btnOpenJsonFile" Content="Open json file" HorizontalAlignment="Stretch" Margin="20" Click="btnOpenJsonFile_Click"/>
-            <Button Content="button1" HorizontalAlignment="Stretch" Margin="20"/>
+          
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1">
